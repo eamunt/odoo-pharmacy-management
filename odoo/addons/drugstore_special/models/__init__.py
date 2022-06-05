@@ -1,0 +1,1 @@
+from . import drugstore_special_model
