@@ -1,0 +1,20 @@
+<!-- field được thêm vào trong model drugstore_e.py không hiển thị -->
+
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="inherit_view_drugstore_form_view" model="ir.ui.view">
+            <!-- name new view -->
+            <field name="name">inherit.view.drugstore.form.view</field>
+            <!-- name model chưa tạo view / trỏ đến model chưa tạo view -->
+            <field name="model">my.drugstore</field>
+            <!-- ref = addon.view_name -->
+            <field name="inherit_id" ref = "drugstore.drugstore_views"/>
+            <field name="arch" type="xml">
+                <xpath expr="/html/body/div[2]/div/div[2]/div/div/div/div[2]/table[2]" position="inside">
+                    <field name="country"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

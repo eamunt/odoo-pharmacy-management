@@ -9,7 +9,7 @@
     'category': 'Uncategorized',
     'version': '0.1',
     'depends':[
-        # warning
+        # warning: name addons
         'drugstore',
     ],
     'data': [
@@ -17,6 +17,7 @@
         'security/ir.model.access.csv',
         # Đăng ký view.
         'views/drugstore_views_extend.xml',
+        'views/product_drugs_views.xml',
     ],
     'installable': True,
     'application': True,
