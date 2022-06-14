@@ -18,7 +18,7 @@ class MyDrugstoreAPI(odoo.http.Controller):
 
     # API đọc dữ liệu từ model
     @odoo.http.route(['/drugstore/<dbname>/<id>'], type='http', auth="none", sitemap=False, cors='*', csrf=False)
-    def pet_handler(self, dbname, id, **kw):
+    def drug_handler(self, dbname, id, **kw):
         model_name = "my.drugstore"
         try:
             registry = odoo.modules.registry.Registry(dbname)
@@ -35,7 +35,7 @@ class MyDrugstoreAPI(odoo.http.Controller):
                         "weight": rec.weight,
                         "import_date": rec.import_date.strftime('%d/%m/%Y'),
                         "type": rec.type,
-                        "product_id": rec.product_ids
+                        "product_ids": rec.product_ids.display_name
                     }
                 }
         except Exception:

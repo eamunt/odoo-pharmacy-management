@@ -1,6 +1,4 @@
-<!-- field được thêm vào trong model drugstore_e.py không hiển thị -->
-
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
         <record id="inherit_view_drugstore_form_view" model="ir.ui.view">
@@ -9,11 +7,22 @@
             <!-- name model chưa tạo view / trỏ đến model chưa tạo view -->
             <field name="model">my.drugstore</field>
             <!-- ref = addon.view_name -->
-            <field name="inherit_id" ref = "drugstore.drugstore_views"/>
+            <field name="inherit_id" ref = "drugstore.my_drug_form_view"/>
             <field name="arch" type="xml">
-                <xpath expr="/html/body/div[2]/div/div[2]/div/div/div/div[2]/table[2]" position="inside">
+
+                <xpath expr="//group[@name='group1']/group[2]" position="inside">
                     <field name="country"/>
                 </xpath>
+
+                <!-- hide field -->
+                <!-- <xpath expr="//field[@name='product_ids']" position="replace">
+                </xpath> -->
+
+                <!-- add one more field -->
+                <!-- <xpath expr="//field[@name='drug_image']" position="after">
+                    <field name="product_ids"/>
+                </xpath> -->
+
             </field>
         </record>
     </data>

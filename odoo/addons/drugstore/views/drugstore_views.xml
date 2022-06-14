@@ -17,7 +17,7 @@
                                 <field name="cus_id"/>
                             </h3>
                         </div>
-                        <group>
+                        <group name = 'group1'>
                             <group>
                                 <field name="exp"/>
                                 <field name="weight"/>

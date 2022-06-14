@@ -18,7 +18,13 @@
         # Đăng ký view.
         'views/drugstore_views_extend.xml',
         'views/product_drugs_views.xml',
+        'views/inherit_view_drugstore.xml',
+        'views/inherit_view_drugstore_extend.xml',
+        'wizard/batch_update.xml',
+        'views/inherit_view_product_drugs.xml',
+
     ],
     'installable': True,
+    # được xem như là 1 app (filter App)
     'application': True,
 }

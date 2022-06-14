@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_product_drugs_batch_update" model="ir.ui.view">
+        <field name="name">view.product.drugs.batch.update</field>
+        <field name="model">product.drugs.batch.update.wizard</field>
+        <field name="arch" type="xml">
+            <form String = "Batch Update">
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="cus_id"/>
+                        <field name="shortname"/>
+                        <field name="exp"/>
+                        <field name="side_effect"/>
+                        <field name="drowsy" />
+                        <field name="weight"/>
+                        <field name="import_date"/>
+                        <field name="type"/>
+                        <field name="color" />
+                        <field name="country"/>
+                        <field name="description"/>
+                        <field name="storage_environment"/>
+                        <field name="location"/>
+                        <field name="basic_price"/>
+                        <field name="bonus_price"/>
+                        <field name="drug_image" />
+                    </group>
+                </group>
+                <h2>
+                    Updating on the selected records?
+                </h2>
+                <footer>
+                    <!-- trỏ vào method multi_update của model batch_update.py -->
+                    <button string = "Update" name = "multi_update" type = "object" default_focus = "1" class = "btn-primary"/>
+                    <button string = "Cancel" class = "btn-default" special = "cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_product_drugs_batch_update" model="ir.actions.act_window">
+        <field name="name">Batch Update</field>
+
+        <!-- res_model: Mô hình đại diện cho action_window -->
+        <field name="res_model">product.drugs.batch.update.wizard</field>
+
+        <field name="binding_model_id" ref="model_product_drugs"></field>
+        <field name="view_mode">form</field>
+
+        <!-- define các option khác nhau cho target window -->
+        <!-- new: mở một window với new address và edit mode (khi tạo wizard) -->
+        <field name="target">new</field>
+
+        <field name="view_id" ref = "view_product_drugs_batch_update"></field>
+    </record>
+
+</odoo>

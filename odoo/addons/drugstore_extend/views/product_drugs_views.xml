@@ -22,9 +22,9 @@
                                 <field name="drug_id"/>
                                 <field name="side_effect"/>
                                 <field name="drowsy"/>
+                                <field name="storage_environment"/>
                             </group>
                             <group>
-                                <field name="storage_environment"/>
                                 <field name="color"/>
                                 <field name="country"/>
                             </group>
@@ -46,6 +46,7 @@
                                 </group>
                             </group>
                         </group>
+
                         <notebook>
                             <page name="general_information" string="General Information">
                                 <group>
@@ -78,32 +79,86 @@
             <field name="name">product.drugs.tree.view</field>
             <field name="model">product.drugs</field>
             <field name="arch" type="xml">
-                <tree string="Drugstore detail" default_order="create_date desc">
-                    <field name="drug_id"/>
+
+                <!-- Sắp xếp theo thứ tự giảm dần ngày tạo (mới -> cũ) -->
+                <tree expand="1" string="Drugstore product" default_order="create_date desc">
+                    <!-- <field name="drug_id"/> -->
                     <field name="name"/>
                     <field name="shortname"/>
                     <field name="final_price"/>
                     <field name="exp"/>
                     <field name="side_effect"/>
                     <field name="drowsy" />
+                    <field name="color"/>
                     <field name="weight"/>
                     <field name="import_date"/>
                     <field name="type"/>
                     <field name="storage_environment"/>
                     <field name="location"/>
-                    <field name="product_ids"/>
+                    <field name="name_and_color" />
+
+                    <!-- <field name="product_ids"/> -->
                 </tree>
+            </field>
+        </record>
+
+
+        <!-- search, filter, group view -->
+        <record id="view_search_product_drugs" model="ir.ui.view">
+            <field name="name">view_search_product_drugs</field>
+            <field name="model">product.drugs</field>
+            <field name="arch" type="xml">
+
+                <!-- search -->
+                <search string = "Search custom">
+
+                    <!-- search -->
+                    <field name="name" string="Drug name"/>
+                    <field name="shortname" string = "Short name"/>
+                    <field name="type" string="Below types"/>
+
+                    <!-- filter -->
+                    <group string="Filters cus">
+                        <filter name="basic_price_filter" string="Basic price &lt; 10$" domain="[('basic_price', '&lt;', '10')]"/>
+                        <separator/>
+                        <filter name="final_price_filter1" string="Final price &gt; 50$" domain="[('final_price', '&gt;', '50')]"/>
+                        <filter name="final_price_filter2" string="Final price &lt;= 50$" domain="[('final_price', '&lt;=', '50')]"/>
+                        <separator/>
+                        <filter name="sup_filter" string="Sup" domain="[('type', '=', 'tpbs')]" />
+                        <filter name="drug_filter" string="Drug" domain="[('type', '=', 'thuoc')]"/>
+                        <filter name="medical_equipment_filter" string="Medical equipment" domain="[('type', '=', 'dcyt')]"/>
+                        <filter name="drowsy_filter" string="Drowsy" domain="[('drowsy', '=', 'True')]"/>
+                        <filter name="side_effect_filter" string="Side effect" domain="[('side_effect', '=', 'True')]"/>
+                    </group>
+
+                    <!-- group by -->
+                    <group string="Group by cus">
+                        <filter name="type_group" string="Type drugs" context="{'group_by': 'type'}" />
+                        <filter name="storage_environment_group" string="Storage environment" context="{'group_by': 'storage_environment'}" />
+                        <filter name="location_group" string="Location" context="{'group_by': 'location'}" />
+                    </group>
+
+                </search>
+
+
             </field>
         </record>
 
         <record id="action_product_drugs" model="ir.actions.act_window">
             <field name="name">Drugstore Detail</field>
             <field name="type">ir.actions.act_window</field>
+
+            <!-- res_model: Mô hình đại diện cho action_window này. -->
             <field name="res_model">product.drugs</field>
             <!-- <field name="view_type">form</field> -->            <!-- Odoo 13 has removed this field -->
+
+            <!-- view_ids: define specific view (view cụ thể) cho từng specific view_mode -->
             <field name="view_ids" eval="[(5, 0, 0),
             (0, 0, {'view_mode': 'tree', 'view_id': ref('product_drugs_tree_view')}),
             (0, 0, {'view_mode': 'form', 'view_id': ref('product_drugs_form_view')})]"/>
+
+            <!-- search view -->
+            <field name = "search_view_id" ref="view_search_product_drugs" />
         </record>
 
         <menuitem id="menu_product_drugs" name="Drustore detail product" action="action_product_drugs" sequence="10" groups="base.group_user"/>

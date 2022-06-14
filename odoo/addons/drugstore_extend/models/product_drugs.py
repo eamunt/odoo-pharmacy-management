@@ -7,10 +7,14 @@ class Product_Drugs(models.Model):
     _description = "product.drugs"
 
     # define drug_id
+    # index: yêu cầu Odoo tạo index trong database
+    # ondelete='cascade':tự động xóa dữ liệu ở bảng con khi xóa dữ liệu ở bảng cha
+        # referential for foreign key
     drug_id = fields.Many2one(
         'drugstore.special', 'Drugstore special',
         auto_join = True, index = True, ondelete='cascade', required=True
     )
+
 
     storage_environment = fields.Selection([
         ('low','<20oC'), 
@@ -26,8 +30,10 @@ class Product_Drugs(models.Model):
     ], string='Location', default='A')
 
     bonus_price = fields.Float("Bonus price", default = 0)
-    final_price = fields.Float("Final price", compute='_compute_final_price') 
+    final_price = fields.Float("Final price", compute='_compute_final_price', store=True) 
 
+
+    @api.depends('basic_price', 'bonus_price')
     def _compute_final_price(self):
         for record in self:
             record.final_price = record.basic_price + record.bonus_price
@@ -37,3 +43,17 @@ class Product_Drugs(models.Model):
                                 relation='product_drugs_rel',
                                 column1='col_drug_id',
                                 column2='col_product_id')
+
+
+
+    @api.onchange('basic_price')
+    def _check_basic_price(self):
+        if self.basic_price <= 2:
+            raise ValidationError("Basic price need more than 2 !")
+
+
+    # concatenate
+    name_and_color = fields.Char("Name and color")
+
+
+    @api.depends

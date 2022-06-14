@@ -17,6 +17,7 @@ class MyDrugstore(models.Model):
     import_date = fields.Date('Import date', required=True)
     type = fields.Selection([('tpbs', 'supplements'),('thuoc', 'Drug'),('dcyt',"Medical equipment")]
     , string='Type', default='thuoc')
+    # help: hiển thị trợ giúp trong giao diện người dùng.
     drug_image = fields.Binary("Drug Image", attachment=True, help="Drug Image")    
     cus_id = fields.Many2one('res.partner', string='Customer')
     product_ids = fields.Many2many(comodel_name='product.product', 
@@ -24,3 +25,5 @@ class MyDrugstore(models.Model):
                                 relation='drug_product_rel',
                                 column1='col_drug_id',
                                 column2='col_product_id')
+
+    

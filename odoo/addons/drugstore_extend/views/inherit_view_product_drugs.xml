@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="inherit_view_product_drugs_form_view" model="ir.ui.view">
+            <!-- name new view -->
+            <field name="name">inherit.view.product.drugs.form.view</field>
+            <!-- name model chưa tạo view / trỏ đến model chưa tạo view -->
+            <field name="model">product.drugs</field>
+            <!-- ref = addon.view_name -->
+            <field name="inherit_id" ref = "drugstore_extend.product_drugs_form_view"/>
+            <field name="arch" type="xml">
+
+                <!-- hide drug_id -->
+                <xpath expr="//field[@name='drug_id']" position="replace">
+                </xpath>
+
+                <xpath expr="//page[@name='additional_information']/group[1]/group[2]" position="replace">
+                </xpath>
+
+                <!-- hide product_ids -->
+                <!-- <xpath expr="//field[@name='product_ids']" position="replace">
+                </xpath> -->
+
+            </field>
+        </record>
+    </data>
+</odoo>
