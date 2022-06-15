@@ -1,22 +1,21 @@
 # -*- coding: utf-8 -*-
 
 {
-    'name': "My Drugstore special",
-    'summary': """My drugstore special model""",
-    'description': """Managing drug information""",
+    'name': "Nha Thuoc",
+    'summary': """Nha Thuoc""",
+    'description': """Quan Ly Nha Thuoc""",
     'author': "haokah",
     
     'category': 'Uncategorized',
     'version': '0.1',
     'depends':[
         # warning
-        'drugstore',
     ],
     'data': [
         # Đăng ký access right.
         'security/ir.model.access.csv',
         # Đăng ký view.
-        'views/drugstore_special_view.xml',
+        'views/nhathuoc_view.xml',
     ],
     'installable': True,
     'application': True,

@@ -1,5 +1,6 @@
 from odoo import api, fields, models, tools, _
 from odoo.exceptions import UserError, ValidationError
+import json
 
 class Product_Drugs(models.Model):
     _name = "product.drugs" # new model.
@@ -51,9 +52,26 @@ class Product_Drugs(models.Model):
         if self.basic_price <= 2:
             raise ValidationError("Basic price need more than 2 !")
 
+    drug_code = fields.Char("Drug code")
 
-    # concatenate
-    name_and_color = fields.Char("Name and color")
+    @api.model
+    def create(self, vals):
+        #print("Successfull")
+        c11 = ""
+        c22 = ""
+        c1 = vals.get('name')
+        c2 = vals.get('color')
+        if c1 or c2:
+            c11 = ""
+            c22 = ""
+            if len(str(c1)) >=3:
+                c11 += c1[0:3]
+            else:
+                c11 += c1[0:len(c1)]
+            if len(str(c2)) >=3:
+                c22 += c2[0:3]
+            else:
+                c22 += c2[0:len(c2)]
+            vals['drug_code'] = c11 +"-"+ c22
 
-
-    @api.depends
+        return super(Product_Drugs, self).create(vals)
