@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="bacsi_form_view" model="ir.ui.view">
+            <field name="name">bacsi.form.view</field>
+            <field name="model">bac.si</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" string="Tên Bác sĩ" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" placeholder="Nguyễn Văn A"/>
+                            </h1>
+                            <label for="ma_bacsi"/>
+                            <h3>
+                                <field name="ma_bacsi" placeholder="Auto"/>
+                            </h3>
+                            <label for="khoa_lam_viec"/>
+                            <h3>
+                                <field name="khoa_lam_viec"/>
+                            </h3>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="gioi_tinh"/>
+                                <field name="dien_thoai"/>
+                                <field name="chuc_vu"/>
+                            </group>
+                            <group>
+                                <field name="ngay_sinh"/>
+                                <field name="dia_chi"/>
+                            </group>                            
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="bacsi_tree_view" model="ir.ui.view">
+            <field name="name">bacsi.tree.view</field>
+            <field name="model">bac.si</field>
+            <field name="arch" type="xml">
+
+                <!-- Sắp xếp theo thứ tự giảm dần ngày tạo (mới -> cũ) -->
+                <tree expand="1" string="Danh sách bác sĩ" default_order="create_date desc">
+                    <field name="name"/>
+                    <field name="ma_bacsi"/>
+                    <field name="gioi_tinh"/>
+                    <field name="dien_thoai"/>
+                    <field name="chuc_vu"/>
+                    <field name="khoa_lam_viec" />
+                    <field name="ngay_sinh"/>
+                    <field name="dia_chi"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- search, filter, group view -->
+        <!-- view này sẽ được lưu vào đối tượng ir.ui.view -->
+        <record id="view_search_bacsi" model="ir.ui.view">
+            <field name="name">view_search_bacsi</field>
+            <field name="model">bac.si</field>
+            <field name="arch" type="xml">
+
+                <!-- search -->
+                <search string = "Search custom">
+
+                    <!-- search -->
+                    <field name="name" string="Tên bác sĩ"/>
+                    <field name="dien_thoai" string = "Số điện thoại"/>
+
+
+                    <!-- group by -->
+                    <group string="Group by cus">
+                        <filter name="chuc_vu" string="Chức vụ" context="{'group_by': 'chuc_vu'}" />
+                        <filter name="khoa_lam_viec" string="Khoa làm việc" context="{'group_by': 'khoa_lam_viec'}" />
+                        <filter name="gioi_tinh" string="Giới tính" context="{'group_by': 'gioi_tinh'}" />
+                    </group>
+
+                </search>
+
+
+            </field>
+        </record>
+
+        <record id="action_bacsi" model="ir.actions.act_window">
+            <field name="name">Quản lý bác sĩ</field>
+            <field name="type">ir.actions.act_window</field>
+
+            <!-- res_model: Mô hình đại diện cho action_window này. -->
+            <field name="res_model">bac.si</field>
+            <!-- <field name="view_type">form</field> -->            <!-- Odoo 13 has removed this field -->
+
+            <!-- view_ids: define specific view (view cụ thể) cho từng specific view_mode -->
+            <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('bacsi_tree_view')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('bacsi_form_view')})]"/>
+
+        </record>
+
+        <menuitem id="menu_bacsi" name="Bác sĩ" action="action_bacsi" sequence="10" groups="base.group_user"/>
+    </data>
+</odoo>
