@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_don_thuoc,access_don_thuoc,model_don_thuoc,base.group_user,1,1,1,1
+access_line_thuoc,access_line_thuoc,model_line_thuoc,base.group_user,1,1,1,1

@@ -64,14 +64,19 @@ class Product_Drugs(models.Model):
         if c1 or c2:
             c11 = ""
             c22 = ""
-            if len(str(c1)) >=3:
+            if len(str(c1)) >=3 and c1:
                 c11 += c1[0:3]
+            elif c1==False:
+                c11 += ''
             else:
                 c11 += c1[0:len(c1)]
-            if len(str(c2)) >=3:
+
+            if len(str(c2)) >=3 and c2:
                 c22 += c2[0:3]
+            elif c2==False:
+                c22 += ''
             else:
-                c22 += c2[0:len(c2)]
+                c22 += c2[0:len(str(c2))]
             vals['drug_code'] = c11 +"-"+ c22
 
         return super(Product_Drugs, self).create(vals)

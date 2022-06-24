@@ -26,6 +26,8 @@
                             <group>
                                 <field name="so_giay_dangky"/>
                                 <field name="nha_sx"/>
+                                <field name="don_gia"/>
+                                <field name="don_gia_hop"/>
                             </group>
 
                             <group name="group1">
@@ -61,6 +63,8 @@
                     <field name="nha_sx"/>
                     <field name="lieu_dung"/>
                     <field name="anh_thuoc"/>
+                    <field name="don_gia"/>
+                    <field name="don_gia_hop"/>
 
                 </tree>
             </field>

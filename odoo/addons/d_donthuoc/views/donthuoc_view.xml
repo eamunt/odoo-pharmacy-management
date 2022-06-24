@@ -12,9 +12,7 @@
                             <h1>
                                 <field name="ten_benhnhan" placeholder="Nguyễn Văn A"/>
                             </h1>
-                            <h3>
-                                <field name="ma_donthuoc" placeholder="Auto"/>
-                            </h3>
+
                             <label for="ngay"/>
                             <h3>
                                 <field name="ngay"/>
@@ -30,9 +28,9 @@
                             <group>
                                 <field name="ten_bacsi" string="Tên bác sĩ"/>
                                 <field name="chan_doan"/>
-                                <field name="thuoc_ids"/>
                             </group>                            
                         </group>
+                        <field name="thuoc_ids"/>
                     </sheet>
                 </form>
             </field>
@@ -93,6 +91,9 @@
             <field name="view_ids" eval="[(5, 0, 0),
             (0, 0, {'view_mode': 'tree', 'view_id': ref('donthuoc_tree_view')}),
             (0, 0, {'view_mode': 'form', 'view_id': ref('donthuoc_form_view')})]"/>
+
+            <!-- search view -->
+            <field name = "search_view_id" ref="view_search_donthuoc" />
 
         </record>
 

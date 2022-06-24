@@ -1,6 +1,7 @@
+# -*- coding: utf-8 -*-
+
 from odoo import api, fields, models, tools, _
 from odoo.exceptions import UserError, ValidationError
-import json
 
 class LineThuoc(models.Model):
     _name = "line.thuoc" # new model.
@@ -12,8 +13,11 @@ class LineThuoc(models.Model):
     # ondelete='cascade':tự động xóa dữ liệu ở bảng con khi xóa dữ liệu ở bảng cha
         # referential for foreign key
     thuoc_id = fields.Many2one(
-        'line.thuoc', 'Line Thuoc',
+        'nha.thuoc', 'Link Thuốc',
         auto_join = True, index = True, ondelete='cascade', required=True
     )
 
-    so_luong = fields.Integer("Số lượng")
+    so_luong = fields.Integer("Số lượng (viên)")
+    sang = fields.Integer("Sáng (viên)")
+    chieu = fields.Integer("Chiều (viên)")
+    ghi_chu = fields.Char("Ghi chú")

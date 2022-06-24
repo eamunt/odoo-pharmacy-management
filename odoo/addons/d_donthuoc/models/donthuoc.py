@@ -23,7 +23,7 @@ class DonThuoc(models.Model):
     dien_thoai = fields.Char('Điện thoại')
     tuoi = fields.Integer("Tuổi")
     chan_doan = fields.Text("Chẩn đoán")
-    thuoc_ids = fields.Many2many('nha.thuoc', string = 'Thuốc')
+    thuoc_ids = fields.Many2many('line.thuoc', string = 'Thuốc')
 
 
     @api.model

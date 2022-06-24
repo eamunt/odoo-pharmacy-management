@@ -1,66 +1,34 @@
-
-
-# -*- coding: utf-8 -*-
 from odoo import api, fields, models, tools, _
 from odoo.exceptions import UserError, ValidationError
+import json
 
 class DonHang(models.Model):
-    _name = "don.hang"
+    _name = "don.hang" # new model.
+    _inherits = {'don.thuoc': 'dh_id'} # Khóa ngoại trỏ đến model don.thuoc là dh_id.
     _description = "don.hang"
 
-    name = fields.Char('Tên Bác sĩ', required=True)
-    ma_bacsi = fields.Char('Mã bác sĩ')
-    gioi_tinh = fields.Selection([
-        ('nam', 'Nam'),
-        ('nu', 'Nữ'),
-        ('khac', 'Khác'),
-    ], string='Giới tính', default='nam')
+    # define drug_id
+    # index: yêu cầu Odoo tạo index trong database
+    # ondelete='cascade':tự động xóa dữ liệu ở bảng con khi xóa dữ liệu ở bảng cha
+        # referential for foreign key
+    dh_id = fields.Many2one(
+        'don.thuoc', 'Đơn thuốc',
+        auto_join = True, index = True, ondelete='cascade', required=True
+    )
 
-    dien_thoai = fields.Char('Điện thoại')
-    chuc_vu = fields.Selection([
-        ('truong_khoa', 'Trưởng khoa'),
-        ('pho_khoa', 'Phó khoa'),
-        ('nhan_vien', 'Nhân viên'),
-        ('khac', 'Khác'),
-    ], string='Chức vụ', default='nhan_vien')
+    phan_tram_giam_gia = fields.Float("Phần trăm giảm giá", default=0)
+    tong_gia = fields.Float("Tổng", compute='_compute_final_price', store=True) 
 
-    khoa_lam_viec = fields.Selection([
-        ('noi', 'Khoa nội'),
-        ('ngoai', 'Khoa ngoại'),
-        ('rh_mat', 'Răng hàm mặt'),
-        ('san', 'Khoa sản'),
-        ('mat', 'Khoa mắt'),
-        ('tai_mui_hong', 'Tai mũi họng'),
-        ('ung_buou', 'Khoa ung bướu'),
-    ], string='Khoa làm việc', default='noi')
-    ngay_sinh = fields.Date('Ngày sinh') 
-    dia_chi = fields.Char("Địa chỉ")
 
-    @api.model
-    def create(self, vals):
-        #print("Successfull")
-        c11 = ""
-        c22 = ""
-        c33 = ""
-        c1 = vals.get('name')
-        c2 = vals.get('chuc_vu')
-        c3 = vals.get('khoa_lam_viec')
-        if c1 or c2 or c3:
-            c11 = ""
-            c22 = ""
-            c33 = ""
-            if len(str(c1)) >=3:
-                c11 += c1[len(str(c1))-3:len(str(c1))]
-            else:
-                c11 += c1[0:len(c1)]
-            if len(str(c2)) >=3:
-                c22 += c2[0:3]
-            else:
-                c22 += c2[0:len(c2)]
-            if len(str(c3)) >=3:
-                c33 += c3[0:3]
-            else:
-                c33 += c3[0:len(c3)]
-            vals['ma_bacsi'] = c11 +"-"+ c22  +"_"+ c33
+    @api.depends('don_gia', 'phan_tram_giam_gia')
+    def _compute_final_price(self):
+        tong_gia_t = 0
+        for record in self:
+            tong_gia_t += record.thuoc.don_gia
+        record.tong_gia = tong_gia_t - tong_gia_t*record.phan_tram_giam_gia
 
-        return super(BacSi, self).create(vals)
+
+    @api.onchange('don_gia')
+    def _check_basic_price(self):
+        if self.don_gia < 0:
+            raise ValidationError("Đơn giá không được âm!")

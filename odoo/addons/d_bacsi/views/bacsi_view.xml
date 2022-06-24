@@ -97,6 +97,9 @@
             (0, 0, {'view_mode': 'tree', 'view_id': ref('bacsi_tree_view')}),
             (0, 0, {'view_mode': 'form', 'view_id': ref('bacsi_form_view')})]"/>
 
+            <!-- search view -->
+            <field name = "search_view_id" ref="view_search_bacsi" />
+
         </record>
 
         <menuitem id="menu_bacsi" name="Bác sĩ" action="action_bacsi" sequence="10" groups="base.group_user"/>

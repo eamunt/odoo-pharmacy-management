@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="inherit_view_linethuoc_tree_view" model="ir.ui.view">
+            <!-- name new view -->
+            <field name="name">inherit.view.linethuoc.tree.view</field>
+            <!-- name model chưa tạo view / trỏ đến model chưa tạo view -->
+            <field name="model">line.thuoc</field>
+            <!-- ref = addon.view_name -->
+            <field name="inherit_id" ref = "d_donthuoc.linethuoc_tree_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='ghi_chu']" position="after">
+                    <field name="tong"/>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>
