@@ -17,7 +17,8 @@
         'security/ir.model.access.csv',
         # Đăng ký view.
         'views/donthuoc_view.xml',
-        'views/line_thuoc_view.xml'
+        'views/line_thuoc_view.xml',
+        'views/invisible_don_gia.xml',
     ],
     'installable': True,
     'application': True,

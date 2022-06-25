@@ -16,19 +16,12 @@ class DonHang(models.Model):
         auto_join = True, index = True, ondelete='cascade', required=True
     )
 
-    phan_tram_giam_gia = fields.Float("Phần trăm giảm giá", default=0)
-    tong_gia = fields.Float("Tổng", compute='_compute_final_price', store=True) 
+    phan_tram_giam_gia = fields.Float("Giảm giá (%)", default=0)
+    tong_gia = fields.Float("Tổng", compute='_compute_final_price') 
 
-
-    @api.depends('don_gia', 'phan_tram_giam_gia')
+    @api.depends('phan_tram_giam_gia')
     def _compute_final_price(self):
-        tong_gia_t = 0
         for record in self:
-            tong_gia_t += record.thuoc.don_gia
-        record.tong_gia = tong_gia_t - tong_gia_t*record.phan_tram_giam_gia
-
-
-    @api.onchange('don_gia')
-    def _check_basic_price(self):
-        if self.don_gia < 0:
-            raise ValidationError("Đơn giá không được âm!")
+            for i in record.thuoc_ids:
+                record.tong_gia += i.tong_line 
+        record.tong_gia = record.tong_gia - record.tong_gia*(record.phan_tram_giam_gia/100)

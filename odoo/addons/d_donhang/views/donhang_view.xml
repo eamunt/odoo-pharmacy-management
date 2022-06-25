@@ -12,6 +12,7 @@
                             <h1>
                                 <field name="ten_benhnhan" placeholder="Nguyễn Văn A"/>
                             </h1>
+                            <label for="dh_id" string="Đơn"/>
                             <h3>
                                 <field name="dh_id"/>
                             </h3>
@@ -35,7 +36,7 @@
                         </group>
                         <field name="thuoc_ids"/>
                         <group>
-                            <group>
+                            <group >
                                 
                             </group>
                             <group>
@@ -55,7 +56,7 @@
 
                 <!-- Sắp xếp theo thứ tự giảm dần ngày tạo (mới -> cũ) -->
                 <tree expand="1" string="Danh sách đơn hàng" default_order="create_date desc">
-                    <field name="ma_donthuoc"/>
+                    <field name="ma_donthuoc" string="Đơn"/>
                     <field name="ten_benhnhan"/>
                     <field name="ten_bacsi"/>
                     <field name="gioi_tinh"/>
@@ -81,8 +82,8 @@
                 <search string = "Search custom">
 
                     <!-- search -->
-                    <field name="ma_donthuoc" string="Mã đơn thuốc"/>
-                    <field name="ten_benhnhan" string = "Tên bệnh nhân"/>
+                    <field name="ma_donthuoc" string="Mã đơn hàng"/>
+                    <field name="ten_benhnhan" string = "Tên khách hàng"/>
                     <field name="ten_bacsi" string="Tên bác sĩ"/>
                     <field name="ngay" string="Ngày"/>
 

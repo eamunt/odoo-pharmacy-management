@@ -24,11 +24,11 @@ class NhaThuoc(models.Model):
     quy_cach_dong_goi = fields.Text("Quy cách đóng gói")
     hang_sx = fields.Char("Hãng sản xuất", required=True)
     nha_sx = fields.Char("Nhà sản xuất")
-    don_gia = fields.Float("Đơn giá (viên)")
-    don_gia_hop = fields.Float("Đơn giá (hộp)")
+    don_gia = fields.Float("Đơn giá")
+    don_gia_hop = fields.Float("Đơn giá full")
     lieu_dung = fields.Integer("Liều dùng/ngày")
     anh_thuoc = fields.Binary("Hình ảnh", attachment=True, help="Hình ảnh") 
-
+    gay_buon_ngu = fields.Boolean("Buồn ngủ", default = False)
     @api.model
     def create(self, vals):
         #print("Successfull")

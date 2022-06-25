@@ -17,7 +17,6 @@
         'security/ir.model.access.csv',
         # Đăng ký view.
         'views/donhang_view.xml',
-        'views/line_donhang_view.xml',
     ],
     'installable': True,
     'application': True,

@@ -34,6 +34,7 @@
                                 <group>
                                     <field name="quy_cach_dong_goi"/>
                                     <field name="lieu_dung"/>
+                                    <field name="gay_buon_ngu"/>
                                 </group>
                                 <group string="Hình ảnh">
                                     <field name="anh_thuoc" string="Ảnh thuốc" widget="image"/>
@@ -62,6 +63,7 @@
                     <field name="hang_sx"/>
                     <field name="nha_sx"/>
                     <field name="lieu_dung"/>
+                    <field name="gay_buon_ngu"/>
                     <field name="anh_thuoc"/>
                     <field name="don_gia"/>
                     <field name="don_gia_hop"/>

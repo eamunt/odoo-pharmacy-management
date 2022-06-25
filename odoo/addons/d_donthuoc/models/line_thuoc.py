@@ -17,7 +17,15 @@ class LineThuoc(models.Model):
         auto_join = True, index = True, ondelete='cascade', required=True
     )
 
-    so_luong = fields.Integer("Số lượng (viên)")
+    so_luong = fields.Integer("Số lượng")
     sang = fields.Integer("Sáng (viên)")
     chieu = fields.Integer("Chiều (viên)")
     ghi_chu = fields.Char("Ghi chú")
+
+    tong_line = fields.Float("Tổng", compute="_compute_final_price", stored = True)
+
+    @api.depends('don_gia', 'so_luong')
+    def _compute_final_price(self):
+        for record in self:
+            record.tong_line = record.don_gia*record.so_luong 
+
