@@ -17,11 +17,11 @@ class DonHang(models.Model):
     )
 
     phan_tram_giam_gia = fields.Float("Giảm giá (%)", default=0)
-    tong_gia = fields.Float("Tổng", compute='_compute_final_price') 
+    tong_gia = fields.Float("Tổng", compute='_compute_final_price', store=True) 
 
     @api.depends('phan_tram_giam_gia')
     def _compute_final_price(self):
         for record in self:
             for i in record.thuoc_ids:
                 record.tong_gia += i.tong_line 
-        record.tong_gia = record.tong_gia - record.tong_gia*(record.phan_tram_giam_gia/100)
+            record.tong_gia = record.tong_gia - record.tong_gia*(record.phan_tram_giam_gia/100)

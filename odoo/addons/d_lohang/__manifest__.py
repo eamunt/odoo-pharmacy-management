@@ -10,13 +10,13 @@
     'version': '0.1',
     'depends':[
         # warning
-        'd_nhathuoc',
     ],
     'data': [
         # Đăng ký access right.
         'security/ir.model.access.csv',
         # Đăng ký view.
         'views/lohang_view.xml',
+        'views/hang_hoa_nhap.xml'
     ],
     'installable': True,
     'application': True,

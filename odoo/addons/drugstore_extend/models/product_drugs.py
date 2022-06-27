@@ -31,7 +31,7 @@ class Product_Drugs(models.Model):
     ], string='Location', default='A')
 
     bonus_price = fields.Float("Bonus price", default = 0)
-    final_price = fields.Float("Final price", compute='_compute_final_price', store=True) 
+    final_price = fields.Float("Final price", compute='_compute_final_price') 
 
 
     @api.depends('basic_price', 'bonus_price')
