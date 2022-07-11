@@ -1,23 +1,22 @@
 # -*- coding: utf-8 -*-
 
 {
-    'name': "Don hang",
-    'summary': """Quan ly don hang""",
-    'description': """Quan Ly don hang""",
+    'name': "Benh nhan",
+    'summary': """Quan ly benh nhan""",
+    'description': """Quan Ly benh nhan""",
     'author': "haokah",
     
     'category': 'Uncategorized',
     'version': '0.1',
     'depends':[
         # warning
-        'd_donthuoc',
     ],
     'data': [
         # Đăng ký access right.
         'security/security.xml',
         'security/ir.model.access.csv',
         # Đăng ký view.
-        'views/donhang_view.xml',
+        'views/benhnhan_view.xml',
     ],
     'installable': True,
     'application': True,

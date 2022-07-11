@@ -21,6 +21,7 @@
                             <group>
                                 <field name="exp"/>
                                 <field name="weight"/>
+                                <field name="lname"/>
                             </group>
                             <group>
                                 <field name="import_date"/>
@@ -62,12 +63,14 @@
                 <tree string="Drugs" default_order="create_date desc">
                     <field name="name"/>
                     <field name="shortname"/>
+                    <field name="lname"/>
                     <field name="exp"/>
                     <field name="weight"/>
                     <field name="import_date"/>
                     <field name="type"/>
                     <field name="cus_id"/>
                     <field name="product_ids"/>
+
                 </tree>
             </field>
         </record>

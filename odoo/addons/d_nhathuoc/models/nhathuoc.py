@@ -50,3 +50,8 @@ class NhaThuoc(models.Model):
             vals['ma_thuoc'] = c11 +"-"+ c22
 
         return super(NhaThuoc, self).create(vals)
+
+    @api.onchange('lieu_dung')
+    def _check_lieudung(self):
+        if self.lieu_dung > 10:
+            raise ValidationError("Liều dùng không được quá 10!")

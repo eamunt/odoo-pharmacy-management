@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_bac_si,access_bac_si,model_bac_si,base.group_user,1,1,1,1
+access_bac_si,access_bac_si,model_bac_si,bacsi_group,1,1,1,1
+access_bac_si,access_bac_si,model_bac_si,bacsi_onlyread_group,1,0,0,0

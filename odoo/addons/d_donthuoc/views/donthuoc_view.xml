@@ -8,11 +8,14 @@
                 <form>
                     <sheet>
                         <div class="oe_title">
-                            <label for="ten_benhnhan" string="Họ tên" class="oe_edit_only"/>
+                            <label for="name" string="Họ tên" class="oe_edit_only"/>
                             <h1>
-                                <field name="ten_benhnhan" placeholder="Nguyễn Văn A"/>
+                                <field name="name" placeholder="Nguyễn Văn A"/>
                             </h1>
-
+                            <label for="bn_id" string="Bệnh nhân"/>
+                            <h3>
+                                <field name="bn_id"/>
+                            </h3>
                             <label for="ngay"/>
                             <h3>
                                 <field name="ngay"/>
@@ -23,7 +26,7 @@
                                 <field name="gioi_tinh"/>
                                 <field name="dien_thoai"/>
                                 <field name="dia_chi"/>
-                                <field name="tuoi"/>
+                                <field name="ngay_sinh"/>
                             </group>
                             <group>
                                 <field name="ten_bacsi" string="Tên bác sĩ"/>
@@ -44,13 +47,13 @@
                 <!-- Sắp xếp theo thứ tự giảm dần ngày tạo (mới -> cũ) -->
                 <tree expand="1" string="Danh sách đơn thuốc" default_order="create_date desc">
                     <field name="ma_donthuoc"/>
-                    <field name="ten_benhnhan"/>
+                    <field name="name"/>
                     <field name="ten_bacsi"/>
                     <field name="gioi_tinh"/>
+                    <field name="ngay_sinh"/>
                     <field name="dia_chi"/>
                     <field name="thuoc_ids"/>
                     <field name="dien_thoai" />
-                    <field name="tuoi"/>
                     <field name="chan_doan"/>
                     <field name="ngay"/>
                 </tree>
@@ -69,7 +72,7 @@
 
                     <!-- search -->
                     <field name="ma_donthuoc" string="Mã đơn thuốc"/>
-                    <field name="ten_benhnhan" string = "Tên bệnh nhân"/>
+                    <field name="name" string = "Tên bệnh nhân"/>
                     <field name="ten_bacsi" string="Tên bác sĩ"/>
                     <field name="ngay" string="Ngày"/>
 

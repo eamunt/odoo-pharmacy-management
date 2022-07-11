@@ -26,4 +26,22 @@ class MyDrugstore(models.Model):
                                 column1='col_drug_id',
                                 column2='col_product_id')
 
+    lname = fields.Char('Lname', compute='get_name')
+
+    @api.model
+    def get_name(self):
+        for i in self:
+            i.lname = "pôppo"
+
+    def printd(self):
+        lname = 'toto'
+
+    # @api.one
+    # @api.depends('name')
+    # def get_name(self):
+    #     reg = []
+    #     reg.append(self.name)
+    #     raise ValidationError(reg)
+
+
     

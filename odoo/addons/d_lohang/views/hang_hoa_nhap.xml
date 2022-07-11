@@ -21,7 +21,6 @@
                             <field name="so_luong"/>
                             <field name="dongia_nhap"/>
                             <field name="chiet_khau"/>
-                            <field name="gia_von"/>
                             <field name="thanh_tien" />
                         </group>
                     </sheet>
@@ -44,7 +43,6 @@
                     <field name="so_luong"/>
                     <field name="dongia_nhap"/>
                     <field name="chiet_khau"/>
-                    <field name="gia_von"/>
                     <field name="thanh_tien"/>
                 </tree>
             </field>

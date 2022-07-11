@@ -13,6 +13,7 @@
     ],
     'data': [
         # Đăng ký access right.
+        'security/security.xml',
         'security/ir.model.access.csv',
         # Đăng ký view.
         'views/lohang_view.xml',

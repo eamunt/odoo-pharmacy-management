@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.module.category" id="module_category_benh_nhan">
+            <field name="name">GroupBenhnhan</field>
+            <field name="description">Helps you manage your BenhNhan</field>
+            <field name="sequence">15</field>
+        </record>
+
+        <record id="benhnhan_group" model="res.groups">
+            <field name="name">BenhNhanGroup</field>
+            <field name="category_id" ref="d_benhnhan.module_category_benh_nhan" />
+        </record>
+    </data>
+</odoo>

@@ -45,7 +45,7 @@ class Product_Drugs(models.Model):
                                 column1='col_drug_id',
                                 column2='col_product_id')
 
-
+    
 
     @api.onchange('basic_price')
     def _check_basic_price(self):

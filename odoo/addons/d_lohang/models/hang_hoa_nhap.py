@@ -23,7 +23,6 @@ class HanghoaNhap(models.Model):
     so_luong = fields.Float('SL', required=True)
     dongia_nhap = fields.Float("Đơn giá nhập")
     chiet_khau = fields.Float("CK(%)")
-    gia_von = fields.Float("Giá vốn", default=0)
     thanh_tien = fields.Float("Thành tiền", compute="_compute_final_price", store = True)
 
     
@@ -35,3 +34,9 @@ class HanghoaNhap(models.Model):
             record.thanh_tien = record.thanh_tien - record.thanh_tien*(record.chiet_khau/100)
     
     
+    @api.constrains('ngay_sx', 'han_su_dung')
+    def get_two_date_comp(self):
+        start_date = self.ngay_sx.strftime('%Y-%m-%d')
+        end_date = self.han_su_dung.strftime('%Y-%m-%d')
+        if start_date > end_date:
+            raise ValidationError(("Ngày sản xuất phải sớm hơn hạn sử dụng"))

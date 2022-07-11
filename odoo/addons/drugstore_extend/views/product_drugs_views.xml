@@ -95,7 +95,7 @@
                     <field name="type"/>
                     <field name="storage_environment"/>
                     <field name="location"/>
-                    <field name="drug_code" , />
+                    <field name="drug_code"/>
 
                     <!-- <field name="product_ids"/> -->
                 </tree>

@@ -1,3 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_lo_hang,access_lo_hang,model_lo_hang,base.group_user,1,1,1,1
-access_hanghoa_nhap,access_hanghoa_nhap,model_hanghoa_nhap,base.group_user,1,1,1,1
+access_lo_hang,access_lo_hang,model_lo_hang,lohang_group,1,1,1,1
+access_hanghoa_nhap,access_hanghoa_nhap,model_hanghoa_nhap,lohang_group,1,1,1,1
