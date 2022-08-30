@@ -59,7 +59,7 @@ odoo.define('hr_attendance_face.kiosk_mode', function (require) {
         },
 
         loadLabeledImages: function () {
-          const labels = ['phuc', 'hue', 'uyen']
+          const labels = ['phuc', 'hue', 'uyen', 'hao']
           return Promise.all(
             labels.map(async label => {
               const descriptions = []
