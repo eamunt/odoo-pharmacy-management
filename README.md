@@ -1,7 +1,6 @@
 # Build a pharmacy management web application
 
 Xây dựng các module để quản lý nhà thuốc bệnh viện.
-<img width="216" alt="Screen Shot 2023-02-19 at 22 46 40" src="https://user-images.githubusercontent.com/93971378/219961610-7ff2a3bb-73f8-4154-9f9c-f0485943fec4.png">
 
 
 Odoo là 1 một phần mềm mã nguồn mở sử dụng Python, tích hợp hàng trăm modules được các doanh nghiệp vừa và nhỏ sử dụng.
